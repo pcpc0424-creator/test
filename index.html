@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOIR ÉLÉGANCE | Luxury Perfume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #c9a962;
+            --gold-light: #e8d5a3;
+            --black: #0a0a0a;
+            --dark: #1a1a1a;
+            --white: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.9), transparent);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 70%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 400;
+            letter-spacing: 15px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 50px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: var(--black);
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        /* Perfume Bottle */
+        .bottle-container {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) rotate(-2deg); }
+            50% { transform: translateY(-53%) rotate(2deg); }
+        }
+
+        .bottle {
+            width: 280px;
+            height: 400px;
+            position: relative;
+        }
+
+        .bottle-body {
+            width: 180px;
+            height: 280px;
+            background: linear-gradient(135deg, rgba(201,169,98,0.3) 0%, rgba(201,169,98,0.1) 50%, rgba(201,169,98,0.2) 100%);
+            border: 1px solid rgba(201,169,98,0.5);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            backdrop-filter: blur(10px);
+            box-shadow:
+                0 0 60px rgba(201,169,98,0.2),
+                inset 0 0 60px rgba(201,169,98,0.1);
+        }
+
+        .bottle-neck {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to right, #2a2a2a, #3a3a3a, #2a2a2a);
+            position: absolute;
+            bottom: 280px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px 5px 0 0;
+        }
+
+        .bottle-cap {
+            width: 80px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold) 0%, #8b7355 50%, var(--gold) 100%);
+            position: absolute;
+            bottom: 340px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 8px 8px 3px 3px;
+        }
+
+        .bottle-label {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: var(--gold);
+        }
+
+        .bottle-label span {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+        }
+
+        .bottle-label small {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            opacity: 0.7;
+        }
+
+        /* About Section */
+        .about {
+            padding: 150px 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+            background: var(--dark);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid var(--gold);
+            z-index: 0;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-img::after {
+            content: '✦';
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+        }
+
+        .about-content h3 {
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .about-content p {
+            font-weight: 300;
+            line-height: 2;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+        }
+
+        /* Notes Section */
+        .notes {
+            padding: 150px 10%;
+            text-align: center;
+            background: var(--black);
+        }
+
+        .notes h3 {
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .notes h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 80px;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+        }
+
+        .note-card {
+            padding: 50px 30px;
+            border: 1px solid rgba(201,169,98,0.2);
+            transition: all 0.4s ease;
+        }
+
+        .note-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .note-icon {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .note-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        .note-card p {
+            font-weight: 300;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+        }
+
+        /* Collection Section */
+        .collection {
+            padding: 150px 10%;
+            background: var(--dark);
+        }
+
+        .collection-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .collection-header h3 {
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .collection-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .product-card {
+            background: var(--black);
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            border-color: rgba(201,169,98,0.3);
+        }
+
+        .product-image {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .mini-bottle {
+            width: 80px;
+            height: 150px;
+            position: relative;
+        }
+
+        .mini-bottle .bottle-body {
+            width: 60px;
+            height: 100px;
+        }
+
+        .mini-bottle .bottle-neck {
+            width: 20px;
+            height: 25px;
+            bottom: 100px;
+        }
+
+        .mini-bottle .bottle-cap {
+            width: 30px;
+            height: 20px;
+            bottom: 125px;
+        }
+
+        .product-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .product-card .price {
+            color: var(--gold);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 10%;
+            background: var(--black);
+            border-top: 1px solid rgba(201,169,98,0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h5 {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: var(--gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .bottle-container {
+                display: none;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .notes-grid,
+            .collection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                letter-spacing: 8px;
+            }
+
+            .hero-subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 4px;
+            }
+
+            .about,
+            .notes,
+            .collection {
+                padding: 80px 5%;
+            }
+
+            .about-content h2,
+            .notes h2,
+            .collection-header h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">NOIR ÉLÉGANCE</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#collection">Collection</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="hero-subtitle">Introducing</p>
+            <h1 class="hero-title">NOIR ÉLÉGANCE</h1>
+            <p class="hero-description">당신만의 시그니처 향기를 경험하세요</p>
+            <a href="#collection" class="btn">Discover Now</a>
+        </div>
+        <div class="bottle-container">
+            <div class="bottle">
+                <div class="bottle-cap"></div>
+                <div class="bottle-neck"></div>
+                <div class="bottle-body">
+                    <div class="bottle-label">
+                        <span>NOIR</span>
+                        <small>EAU DE PARFUM</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-image">
+            <div class="about-img"></div>
+        </div>
+        <div class="about-content">
+            <h3>Our Story</h3>
+            <h2>시간이 빚어낸<br>완벽한 조화</h2>
+            <p>
+                NOIR ÉLÉGANCE는 프랑스 그라스 지역의 최고급 원료만을 엄선하여
+                마스터 조향사가 직접 블렌딩한 프리미엄 향수입니다.
+                수십 년간의 전통과 현대적 감각이 만나 탄생한 이 향기는
+                당신의 존재감을 더욱 빛나게 해줄 것입니다.
+            </p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </section>
+
+    <section class="notes">
+        <h3>Fragrance Notes</h3>
+        <h2>세 가지 층위의 향연</h2>
+        <div class="notes-grid">
+            <div class="note-card">
+                <div class="note-icon">◇</div>
+                <h4>Top Notes</h4>
+                <p>베르가못, 핑크 페퍼, 사프란의 화려한 첫인상이 감각을 일깨웁니다</p>
+            </div>
+            <div class="note-card">
+                <div class="note-icon">◈</div>
+                <h4>Heart Notes</h4>
+                <p>아이리스, 자스민, 로즈의 우아한 플로럴 하모니가 깊은 여운을 남깁니다</p>
+            </div>
+            <div class="note-card">
+                <div class="note-icon">◆</div>
+                <h4>Base Notes</h4>
+                <p>앰버, 샌달우드, 머스크가 만들어내는 따뜻하고 관능적인 베이스</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection" id="collection">
+        <div class="collection-header">
+            <h3>Our Collection</h3>
+            <h2>컬렉션 라인업</h2>
+        </div>
+        <div class="collection-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="mini-bottle">
+                        <div class="bottle-cap"></div>
+                        <div class="bottle-neck"></div>
+                        <div class="bottle-body"></div>
+                    </div>
+                </div>
+                <h4>Noir Intense</h4>
+                <p class="price">₩ 320,000</p>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="mini-bottle">
+                        <div class="bottle-cap"></div>
+                        <div class="bottle-neck"></div>
+                        <div class="bottle-body"></div>
+                    </div>
+                </div>
+                <h4>Noir Velvet</h4>
+                <p class="price">₩ 280,000</p>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="mini-bottle">
+                        <div class="bottle-cap"></div>
+                        <div class="bottle-neck"></div>
+                        <div class="bottle-body"></div>
+                    </div>
+                </div>
+                <h4>Noir Absolute</h4>
+                <p class="price">₩ 450,000</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">NOIR ÉLÉGANCE</div>
+                <p>프랑스 그라스의 전통과 현대적 감성이 만나 탄생한 프리미엄 니치 퍼퓸 하우스</p>
+            </div>
+            <div class="footer-links">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Collection</a></li>
+                    <li><a href="#">Stores</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="#">Seoul Flagship</a></li>
+                    <li><a href="#">+82 2 1234 5678</a></li>
+                    <li><a href="#">info@noir.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NOIR ÉLÉGANCE. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
